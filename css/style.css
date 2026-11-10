@@ -1,0 +1,121 @@
+
+@font-face {
+  font-family: "Obstacle Mono 3";
+  src: url("../fonts/ObstacleMono3-Regular.woff") format("woff");
+  font-display: block;
+}
+/* Obstacle Mono 3 Cipher, three keys: each draws a different letter swap back into the real words */
+@font-face {
+  font-family: "Obstacle Mono 3 Cipher A";
+  src: url("../fonts/ObstacleMono3-CipherA.woff") format("woff");
+  font-display: block;
+}
+@font-face {
+  font-family: "Obstacle Mono 3 Cipher B";
+  src: url("../fonts/ObstacleMono3-CipherB.woff") format("woff");
+  font-display: block;
+}
+@font-face {
+  font-family: "Obstacle Mono 3 Cipher C";
+  src: url("../fonts/ObstacleMono3-CipherC.woff") format("woff");
+  font-display: block;
+}
+
+:root {
+  --paper: #FFFFFF;
+  --ink: #000000;
+  --display: "Obstacle Mono 3", ui-monospace, monospace;
+  --plain: monospace;
+  --size: clamp(22px, 4vw, 76px);
+  --pad: max(16px, 1.6vw);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  padding: max(var(--pad), env(safe-area-inset-top, 0px))
+           max(var(--pad), env(safe-area-inset-right, 0px))
+           max(48px, env(safe-area-inset-bottom, 0px))
+           max(var(--pad), env(safe-area-inset-left, 0px));
+}
+::selection { background: var(--ink); color: var(--paper); }
+
+/* ---------- the sheet: one run of justified text ---------- */
+.sheet {
+  font-size: var(--size);
+  line-height: 1.12;
+  text-align: justify;
+  text-align-last: left;
+  hyphens: none;
+  overflow-wrap: anywhere;
+}
+
+/* title, inline at the start of the text */
+.mark {
+  display: inline;
+  margin: 0;
+  font: inherit;
+  font-feature-settings: "liga" 0;
+}
+.gap { display: inline-block; width: 2ch; }
+
+/* ---------- the menu, top right, the same size as the text ---------- */
+.menu {
+  float: right;
+  margin-left: 1.5ch;
+  text-align: right;
+}
+.menu button {
+  display: block;
+  width: fit-content;
+  margin: 0 0 0 auto;
+  padding: 0 .1em;
+  font: inherit;
+  line-height: inherit;
+  font-feature-settings: "liga" 0;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+.menu button:hover,
+.menu button:focus-visible,
+.menu button[aria-pressed="true"],
+.menu button.is-on {
+  outline: none;
+  box-shadow: inset 0 0 0 max(1px, .03em) var(--ink);
+}
+.menu button[disabled] { opacity: .35; cursor: not-allowed; }
+
+/* ---------- the editable block ---------- */
+.block {
+  font-family: var(--display);          /* before the script runs */
+  outline: none;
+  cursor: text;
+  caret-color: var(--ink);
+  white-space: normal;
+}
+.block.key-0 { font-family: "Obstacle Mono 3 Cipher A", ui-monospace, monospace; }
+.block.key-1 { font-family: "Obstacle Mono 3 Cipher B", ui-monospace, monospace; }
+.block.key-2 { font-family: "Obstacle Mono 3 Cipher C", ui-monospace, monospace; }
+.block.is-plain { font-family: var(--plain); }
+.block:empty::before { content: attr(data-placeholder); opacity: .35; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip {
+  position: absolute; left: var(--pad); top: 8px; z-index: 20;
+  padding: 8px 12px; background: var(--ink); color: var(--paper);
+  font: 16px/1.2 var(--plain);
+  transform: translateY(-300%);
+}
+.skip:focus { transform: none; }

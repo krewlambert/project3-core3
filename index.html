@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TILTTT MONO</title>
+<meta name="description" content="A one-page specimen of Obstacle Mono 3 Cipher: type into the block, and what you type looks right but is a cipher underneath.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#real-words">Skip to the words in ordinary text</a>
+
+  <main class="sheet">
+    <nav class="menu" aria-label="Page controls">
+      <button type="button" id="hear">Hear</button>
+      <button type="button" id="shuffle">Shuffle</button>
+      <button type="button" id="plain" aria-pressed="false">Plain text</button>
+    </nav>
+    <h1 class="mark">TILTTT MONO</h1><span class="gap" aria-hidden="true"></span><span id="block" class="block" contenteditable="true" spellcheck="false" autocorrect="off" autocapitalize="off" role="textbox" aria-multiline="true" aria-label="Text block. Type here." data-placeholder="Type here.">Modern life is such that, confronted with the most mechanical, the most
+stereotypical repetitions, inside and outside ourselves, we endlessly extract
+from them little differences, variations and modifications. Conversely,
+secret, disguised and hidden repetitions, animated by the perpetual
+displacement of a difference, restore bare, mechanical and stereotypical
+repetitions, within and without us.</span>
+  </main>
+
+  <section id="real-words" class="sr-only" tabindex="-1" aria-label="The words in ordinary text">
+    <p id="real-text">T </p>
+  </section>
+
+  <p class="sr-only" id="status" role="status"></p>
+
+<script src="js/cipher-map.js"></script>
+<script src="js/speak.js"></script>
+<script src="js/page.js"></script>
+</body>
+</html>
